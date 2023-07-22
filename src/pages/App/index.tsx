@@ -6,6 +6,7 @@ import { MyOrders } from '../MyOrders'
 import { SignIn } from '../SignIn'
 import { NotFound } from '../NotFound'
 import { Navbar } from '../../Components/Navbar'
+import { ShopiCartProvider } from '../../Context'
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -22,12 +23,12 @@ const AppRoutes = () => {
 
 function App () {
   return (
-    <>
+    <ShopiCartProvider>
       <BrowserRouter>
         <AppRoutes/>
         <Navbar/>
       </BrowserRouter>
-    </>
+    </ShopiCartProvider>
   )
 }
 
