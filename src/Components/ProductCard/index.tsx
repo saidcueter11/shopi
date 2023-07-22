@@ -8,7 +8,7 @@ export const ProductCard = (item: ProductType) => {
   const increaseCartCounter = () => context.setCartCounter(context.cartCounter + 1)
 
   return (
-    <article className="bg-white cursor-pointer w-56 h-60 hover:scale-105 transition-all">
+    <article className="bg-white cursor-pointer w-56 h-60 hover:scale-105 transition-all" onClick={context.openProductDetail}>
       <figure className="relative mb-2 w-full h-4/5">
         <span className="absolute bottom-2 left-2 px-3 py-0.5 bg-white/60 rounded-lg text-black text-xs">{item.category}</span>
 
