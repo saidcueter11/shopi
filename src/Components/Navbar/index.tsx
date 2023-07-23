@@ -1,9 +1,10 @@
 import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ShopiCartContext } from '../../Context'
+import { ShopiCartContextType } from '../../types'
 
 export const Navbar = () => {
-  const context = useContext(ShopiCartContext)
+  const context = useContext(ShopiCartContext) as ShopiCartContextType
   const activeStyle = 'underline underline-offset-4'
 
   const isRouteActive = (isActive: boolean) => isActive ? activeStyle : undefined
