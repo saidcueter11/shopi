@@ -1,11 +1,12 @@
-import { useContext } from 'react'
+import { SyntheticEvent, useContext } from 'react'
 import { ProductType, ShopiCartContextType } from '../../types'
 import { ShopiCartContext } from '../../Context'
 
 export const ProductCard = (item: ProductType) => {
   const context = useContext(ShopiCartContext) as ShopiCartContextType
 
-  const addProduct = () => {
+  const addProduct = (e: SyntheticEvent) => {
+    e.stopPropagation()
     context.setCartCounter(context.cartCounter + 1)
     context.addProductToCart(item)
   }

@@ -3,6 +3,7 @@ import { MainLayout } from '../../Components/Layout'
 import { ProductCard } from '../../Components/ProductCard'
 import { ProductType } from '../../types'
 import { ProductDetail } from '../../Components/ProductDetail'
+import { CheckoutSideMenu } from '../../Components/CheckoutSideMenu'
 
 export const Home = () => {
   const [items, setItems] = useState<ProductType[]>([])
@@ -21,6 +22,7 @@ export const Home = () => {
         }
       </section>
       <ProductDetail/>
+      <CheckoutSideMenu/>
     </MainLayout>
   )
 }
