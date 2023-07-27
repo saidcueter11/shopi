@@ -2,9 +2,12 @@ import { useContext } from 'react'
 import { ShopiCartContext } from '../../Context'
 import { ShopiCartContextType } from '../../types'
 import { OrderCard } from '../OrderCard'
+import { getTotalPrice } from '../../utils'
 
 export const CheckoutSideMenu = () => {
   const context = useContext(ShopiCartContext) as ShopiCartContextType
+  const totalPrice = getTotalPrice(context.shopingCart)
+
   return (
     <aside className={`w-80 flex flex-col fixed bg-white border border-slate-950 rounded-lg h-5/6 overflow-y-scroll right-4 ${context.isCheckSideMenuOpen ? 'opacity-100' : 'opacity-0 hidden'} transition-opacity duration-300 no-scrollbar`}>
       <div className="flex justify-between items-center p-6">
@@ -19,6 +22,13 @@ export const CheckoutSideMenu = () => {
           context.shopingCart.map(product => <OrderCard key={product.id} {...product}/>)
         }
       </div>
+
+      <footer className='px-6 sticky bottom-0 backdrop-blur-md rounded-full'>
+        <p className='flex justify-between items-center p-3'>
+          <span className='font-medium text-lg'>Total: </span>
+          <span className='font-bold text-xl'>$ {totalPrice}</span>
+        </p>
+      </footer>
 
     </aside>
   )
