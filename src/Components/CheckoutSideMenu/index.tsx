@@ -1,11 +1,12 @@
 import { useContext } from 'react'
 import { ShopiCartContext } from '../../Context'
 import { ShopiCartContextType } from '../../types'
+import { OrderCard } from '../OrderCard'
 
 export const CheckoutSideMenu = () => {
   const context = useContext(ShopiCartContext) as ShopiCartContextType
   return (
-    <aside className={`w-80 flex flex-col fixed bg-white border border-slate-950 rounded-lg h-5/6 overflow-y-scroll right-4 ${context.isCheckSideMenuOpen ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300 no-scrollbar`}>
+    <aside className={`w-80 flex flex-col fixed bg-white border border-slate-950 rounded-lg h-5/6 overflow-y-scroll right-4 ${context.isCheckSideMenuOpen ? 'opacity-100' : 'opacity-0 hidden'} transition-opacity duration-300 no-scrollbar`}>
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">My Orders</h2>
         <button onClick={context.closeCheckoutSideMenu}>
@@ -13,15 +14,12 @@ export const CheckoutSideMenu = () => {
         </button>
       </div>
 
-      <figure className='px-6'>
-        <img className='w-full h-full rounded-lg' src={context.productToShow.image} alt={context.productToShow.title} />
-      </figure>
+      <div className='px-6'>
+        {
+          context.shopingCart.map(product => <OrderCard key={product.id} {...product}/>)
+        }
+      </div>
 
-      <p className='flex flex-col p-6 gap-2'>
-        <span className='font-medium text-2xl'>$ {context.productToShow.price}</span>
-        <span className='font-medium text-md text-center'>{context.productToShow.title}</span>
-        <span className='text-center'>{context.productToShow.description}</span>
-      </p>
     </aside>
   )
 }

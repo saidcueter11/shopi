@@ -5,7 +5,7 @@ import { ShopiCartContextType } from '../../types'
 export const ProductDetail = () => {
   const context = useContext(ShopiCartContext) as ShopiCartContextType
   return (
-    <aside className={`w-80 flex flex-col fixed bg-white border border-slate-950 rounded-lg h-5/6 overflow-y-scroll right-4 ${context.isProductDetailOpen ? 'opacity-100' : 'opacity-0'} transition-opacity duration-300 no-scrollbar`}>
+    <aside className={`w-80 flex flex-col fixed bg-white border border-slate-950 rounded-lg h-5/6 overflow-y-scroll right-4 ${context.isProductDetailOpen ? 'opacity-100' : 'opacity-0 hidden'} transition-opacity duration-300 no-scrollbar`}>
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">Detail</h2>
         <button onClick={context.closeProductDetail}>

@@ -22,6 +22,7 @@ export interface ShopiCartContextType {
   isProductDetailOpen: boolean
   shopingCart: ProductType[]
   addProductToCart: (product: ProductType) => void
+  removeProductFromCart: (product: ProductType) => void
   closeCheckoutSideMenu: () => void
   isCheckSideMenuOpen: boolean
 }

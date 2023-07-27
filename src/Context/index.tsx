@@ -16,6 +16,13 @@ export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
     setShopingCart(prev => [...prev, product])
   }
 
+  const removeProductFromCart = (product: ProductType) => {
+    setIsCheckSideMenuOpen(true)
+    setIsProductDetailOpen(false)
+    const newCart = shopingCart.filter(currentProduct => currentProduct.id !== product.id)
+    setShopingCart(newCart)
+  }
+
   const showProductDetail = (product: ProductType) => {
     setIsProductDetailOpen(true)
     setIsCheckSideMenuOpen(false)
@@ -36,7 +43,8 @@ export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
       shopingCart,
       addProductToCart,
       closeCheckoutSideMenu,
-      isCheckSideMenuOpen
+      isCheckSideMenuOpen,
+      removeProductFromCart
     }}>
       {children}
     </ShopiCartContext.Provider>
