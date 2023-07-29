@@ -13,6 +13,13 @@ export interface ProductType {
   rating?: Rating
 }
 
+export interface OrderType {
+  date: number
+  products: ProductType[]
+  totalProducts: number
+  totalPrice: number
+}
+
 export interface ShopiCartContextType {
   cartCounter: number
   setCartCounter: (count: number) => void
@@ -25,4 +32,6 @@ export interface ShopiCartContextType {
   removeProductFromCart: (product: ProductType) => void
   closeCheckoutSideMenu: () => void
   isCheckSideMenuOpen: boolean
+  order: OrderType[]
+  addNewOrder: (products: ProductType[], totalProducts: number, totalPrice: number) => void
 }

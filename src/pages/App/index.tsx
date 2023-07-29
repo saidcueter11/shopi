@@ -13,6 +13,7 @@ const AppRoutes = () => {
     { path: '/', element: <Home/> },
     { path: '/myOrder', element: <MyOrder/> },
     { path: '/myOrders', element: <MyOrders/> },
+    { path: '/myOrders/last', element: <MyOrder/> },
     { path: '/myAccount', element: <MyAccount/> },
     { path: '/SignIn', element: <SignIn/> },
     { path: '/*', element: <NotFound/> }

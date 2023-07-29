@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react'
-import { ProductType, ShopiCartContextType } from '../types'
+import { OrderType, ProductType, ShopiCartContextType } from '../types'
 
 export const ShopiCartContext = createContext<ShopiCartContextType | null>(null)
 
@@ -9,6 +9,7 @@ export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
   const [isCheckSideMenuOpen, setIsCheckSideMenuOpen] = useState(false)
   const [productToShow, setProductToShow] = useState<ProductType>({})
   const [shopingCart, setShopingCart] = useState<ProductType[]>([])
+  const [order, setOrder] = useState<OrderType[]>([])
 
   const addProductToCart = (product: ProductType) => {
     setIsCheckSideMenuOpen(true)
@@ -29,6 +30,13 @@ export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
     setProductToShow(product)
   }
 
+  const addNewOrder = (products: ProductType[], totalPrice: number, totalProducts: number) => {
+    const newOrder: OrderType = { date: Date.now(), products, totalPrice, totalProducts }
+    setOrder(prev => [...prev, newOrder])
+    setCartCounter(0)
+    setShopingCart([])
+  }
+
   const closeProductDetail = () => setIsProductDetailOpen(false)
   const closeCheckoutSideMenu = () => setIsCheckSideMenuOpen(false)
 
@@ -44,7 +52,9 @@ export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
       addProductToCart,
       closeCheckoutSideMenu,
       isCheckSideMenuOpen,
-      removeProductFromCart
+      removeProductFromCart,
+      order,
+      addNewOrder
     }}>
       {children}
     </ShopiCartContext.Provider>

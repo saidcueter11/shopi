@@ -3,10 +3,13 @@ import { ShopiCartContext } from '../../Context'
 import { ShopiCartContextType } from '../../types'
 import { OrderCard } from '../OrderCard'
 import { getTotalPrice } from '../../utils'
+import { Link } from 'react-router-dom'
 
 export const CheckoutSideMenu = () => {
   const context = useContext(ShopiCartContext) as ShopiCartContextType
   const totalPrice = getTotalPrice(context.shopingCart)
+
+  const handleCheckout = () => context.addNewOrder(context.shopingCart, context.cartCounter, totalPrice)
 
   return (
     <aside className={`w-80 flex flex-col fixed bg-white border border-slate-950 rounded-lg h-5/6 overflow-y-scroll right-4 ${context.isCheckSideMenuOpen ? 'opacity-100' : 'opacity-0 hidden'} transition-opacity duration-300 no-scrollbar`}>
@@ -17,17 +20,20 @@ export const CheckoutSideMenu = () => {
         </button>
       </div>
 
-      <div className='px-6'>
+      <div className='px-6 flex-1'>
         {
           context.shopingCart.map(product => <OrderCard key={product.id} {...product}/>)
         }
       </div>
 
-      <footer className='px-6 sticky bottom-0 backdrop-blur-md rounded-full'>
+      <footer className='px-6 mb-6 backdrop-blur-md rounded-full sticky bottom-6'>
         <p className='flex justify-between items-center p-3'>
           <span className='font-medium text-lg'>Total: </span>
           <span className='font-bold text-xl'>$ {totalPrice}</span>
         </p>
+        <Link to='/myOrders/last'>
+          <button className='bg-slate-900 w-full py-3 text-slate-50 rounded-lg' onClick={handleCheckout}>Checkout</button>
+        </Link>
       </footer>
 
     </aside>
