@@ -9,7 +9,7 @@ export const MyOrders = () => {
   return (
     <MainLayout>
       {
-        context?.order.map(o => <Link key={o.date} to={'/myOrders'}><OrdersCard totalPrice={o.totalPrice} totalProducts={o.totalProducts}/></Link>)
+        context?.order.map(o => <Link key={o.date} to={`/myOrders/${o.date}}`}><OrdersCard totalPrice={o.totalPrice} totalProducts={o.totalProducts}/></Link>)
       }
     </MainLayout>
   )

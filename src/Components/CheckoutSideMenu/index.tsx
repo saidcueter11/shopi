@@ -9,7 +9,7 @@ export const CheckoutSideMenu = () => {
   const context = useContext(ShopiCartContext) as ShopiCartContextType
   const totalPrice = getTotalPrice(context.shopingCart)
 
-  const handleCheckout = () => context.addNewOrder(context.shopingCart, context.cartCounter, totalPrice)
+  const handleCheckout = () => context.addNewOrder(context.shopingCart, totalPrice, context.cartCounter)
 
   return (
     <aside className={`w-80 flex flex-col fixed bg-white border border-slate-950 rounded-lg h-5/6 overflow-y-scroll right-4 ${context.isCheckSideMenuOpen ? 'opacity-100' : 'opacity-0 hidden'} transition-opacity duration-300 no-scrollbar`}>
