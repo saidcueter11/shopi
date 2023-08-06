@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ShopiCartContext } from '../../Context'
 import { ShopiCartContextType } from '../../types'
+import { LoadingCategories } from '../LoadingCategories'
 
 export const Navbar = () => {
   const context = useContext(ShopiCartContext) as ShopiCartContextType
@@ -22,7 +23,9 @@ export const Navbar = () => {
         <li className='font-semibold text-lg'><NavLink to={'/'}>Shopi</NavLink></li>
         <li><NavLink to={'/'} className={({ isActive }) => isRouteActive(isActive)}>All</NavLink></li>
         {
-          categories.map((category, i) => <li key={i}><NavLink to={category} className={({ isActive }) => isRouteActive(isActive)}>{category}</NavLink></li>)
+          categories.length
+            ? categories.map((category, i) => <li key={i}><NavLink to={category} className={({ isActive }) => isRouteActive(isActive)}>{category}</NavLink></li>)
+            : <LoadingCategories/>
         }
       </ul>
 

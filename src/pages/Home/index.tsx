@@ -5,6 +5,7 @@ import { ProductType } from '../../types'
 import { ProductDetail } from '../../Components/ProductDetail'
 import { CheckoutSideMenu } from '../../Components/CheckoutSideMenu'
 import { useParams } from 'react-router-dom'
+import { LoadingItems } from '../../Components/LoadingItems'
 
 export const Home = () => {
   const [items, setItems] = useState<ProductType[]>([])
@@ -35,8 +36,13 @@ export const Home = () => {
         }
 
         {
-          (filteredItems.length === 0) && <p className='col-span-3 self-center justify-self-center font-medium text-xl'>No item found</p>
+          !items.length && <LoadingItems/>
         }
+
+        {
+          (filteredItems.length === 0 && !items) && <p className='col-span-3 self-center justify-self-center font-medium text-xl'>No item found</p>
+        }
+
       </section>
       <ProductDetail/>
       <CheckoutSideMenu/>
