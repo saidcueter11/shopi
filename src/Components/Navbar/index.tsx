@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { ShopiCartContext } from '../../Context'
 import { ShopiCartContextType } from '../../types'
@@ -6,6 +6,13 @@ import { ShopiCartContextType } from '../../types'
 export const Navbar = () => {
   const context = useContext(ShopiCartContext) as ShopiCartContextType
   const activeStyle = 'underline underline-offset-4'
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    fetch('https://fakestoreapi.com/products/categories')
+      .then(res => res.json())
+      .then(json => setCategories(json))
+  }, [])
 
   const isRouteActive = (isActive: boolean) => isActive ? activeStyle : undefined
 
@@ -14,11 +21,9 @@ export const Navbar = () => {
       <ul className='flex items-center gap-3'>
         <li className='font-semibold text-lg'><NavLink to={'/'}>Shopi</NavLink></li>
         <li><NavLink to={'/'} className={({ isActive }) => isRouteActive(isActive)}>All</NavLink></li>
-        <li><NavLink to={'/'} className={({ isActive }) => isRouteActive(isActive)}>Clothes</NavLink></li>
-        <li><NavLink to={'/'} className={({ isActive }) => isRouteActive(isActive)}>Electronics</NavLink></li>
-        <li><NavLink to={'/'} className={({ isActive }) => isRouteActive(isActive)}>Furnitiures</NavLink></li>
-        <li><NavLink to={'/'} className={({ isActive }) => isRouteActive(isActive)}>Toys</NavLink></li>
-        <li><NavLink to={'/'} className={({ isActive }) => isRouteActive(isActive)}>Others</NavLink></li>
+        {
+          categories.map((category, i) => <li key={i}><NavLink to={category} className={({ isActive }) => isRouteActive(isActive)}>{category}</NavLink></li>)
+        }
       </ul>
 
       <ul className='flex items-center gap-3'>

@@ -11,6 +11,7 @@ import { ShopiCartProvider } from '../../Context'
 const AppRoutes = () => {
   const routes = useRoutes([
     { path: '/', element: <Home/> },
+    { path: '/:category', element: <Home/> },
     { path: '/myOrder', element: <MyOrder/> },
     { path: '/myOrders', element: <MyOrders/> },
     { path: '/myOrders/last', element: <MyOrder/> },
