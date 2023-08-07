@@ -1,24 +1,22 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { MainLayout } from '../../Components/Layout'
 import { NavLink } from 'react-router-dom'
-import { AccountType } from '../../types'
+import { ShopiCartContextType } from '../../types'
+import { ShopiCartContext } from '../../Context'
 
 export const SignIn = () => {
-  localStorage.setItem('logged', 'false')
-  localStorage.setItem('accounts', '[]')
+  const context = useContext(ShopiCartContext) as ShopiCartContextType
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
   const handleLogIn = () => {
-    const accounts: AccountType[] = JSON.parse(localStorage.getItem('accounts') as string)
-
-    if (accounts.length === 0) {
+    if (context.accounts.length === 0) {
       setError('No Account was found')
       return
     }
 
-    accounts.forEach(account => {
+    context.accounts.forEach(account => {
       if (account.email !== email) {
         setError('Account not found')
         return
@@ -29,7 +27,7 @@ export const SignIn = () => {
       }
 
       if (account.email === email && account.password === password) {
-        localStorage.setItem('logged', 'true')
+        context.setLogged(true)
       }
     })
   }

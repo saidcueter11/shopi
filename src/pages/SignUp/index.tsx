@@ -1,7 +1,29 @@
 import { Link } from 'react-router-dom'
 import { MainLayout } from '../../Components/Layout'
+import { useContext, useState } from 'react'
+import { ShopiCartContext } from '../../Context'
+import { AccountType, ShopiCartContextType } from '../../types'
 
 export const SignUp = () => {
+  const context = useContext(ShopiCartContext) as ShopiCartContextType
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSignUp = () => {
+    const newAccount: AccountType = {
+      email,
+      name,
+      password,
+      orders: []
+    }
+
+    const newAccounts = [...context.accounts, newAccount]
+
+    context.setAccounts(newAccounts)
+    context.setLogged(true)
+  }
+
   return (
     <MainLayout>
       <form action="" className='w-80 flex flex-col justify-center items-center gap-5'>
@@ -13,19 +35,19 @@ export const SignUp = () => {
         <h2 className='font-medium text-lg'>Sign Up</h2>
 
         <div className='flex flex-col gap-2 justify-between'>
-          <label htmlFor="" className='font-medium text-lg'>Name</label>
-          <input type="text" className='border border-black/80 rounded-lg p-4'/>
+          <label htmlFor="name" className='font-medium text-lg'>Name</label>
+          <input type="text" id='name' onChange={(e) => setName(e.target.value)} className='border border-black/80 rounded-lg p-4'/>
         </div>
         <div className='flex flex-col gap-2 justify-between'>
-          <label htmlFor="" className='font-medium text-lg'>Email</label>
-          <input type="text" className='border border-black/80 rounded-lg p-4'/>
+          <label htmlFor="signUpEmail" className='font-medium text-lg'>Email</label>
+          <input type="email" id='signUpEmail' onChange={(e) => setEmail(e.target.value)} className='border border-black/80 rounded-lg p-4'/>
         </div>
         <div className='flex flex-col gap-2 justify-between'>
-          <label htmlFor="" className='font-medium text-lg'>Password</label>
-          <input type="text" className='border border-black/80 rounded-lg p-4'/>
+          <label htmlFor="signUpPassword" className='font-medium text-lg'>Password</label>
+          <input type="password" id='signUpPassword' onChange={(e) => setPassword(e.target.value)} className='border border-black/80 rounded-lg p-4'/>
         </div>
 
-        <button type='button' className='bg-slate-900 w-4/5 p-4 text-slate-50 rounded-lg font-medium hover:opacity-80 transition-opacity'>Sign In</button>
+        <button type='button' className='bg-slate-900 w-4/5 p-4 text-slate-50 rounded-lg font-medium hover:opacity-80 transition-opacity' onClick={handleSignUp}>Sign Up</button>
       </form>
     </MainLayout>
   )

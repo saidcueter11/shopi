@@ -20,6 +20,12 @@ export interface OrderType {
   totalPrice: number
 }
 
+export interface AccountType {
+  name: string
+  email: string
+  password: string
+  orders: OrderType[]
+}
 export interface ShopiCartContextType {
   cartCounter: number
   setCartCounter: (count: number) => void
@@ -34,10 +40,8 @@ export interface ShopiCartContextType {
   isCheckSideMenuOpen: boolean
   order: OrderType[]
   addNewOrder: (products: ProductType[], totalProducts: number, totalPrice: number) => void
-}
-
-export interface AccountType {
-  email: string
-  password: string
-  orders: OrderType[]
+  accounts: AccountType[]
+  setAccounts: (newItem: AccountType[]) => void
+  logged: boolean
+  setLogged: (newItem: boolean) => void
 }

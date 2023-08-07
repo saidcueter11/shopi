@@ -1,9 +1,12 @@
 import React, { createContext, useState } from 'react'
-import { OrderType, ProductType, ShopiCartContextType } from '../types'
+import { AccountType, OrderType, ProductType, ShopiCartContextType } from '../types'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 export const ShopiCartContext = createContext<ShopiCartContextType | null>(null)
 
 export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
+  const [accounts, setAccounts] = useLocalStorage<AccountType[]>('accounts', [])
+  const [logged, setLogged] = useLocalStorage<boolean>('logged', false)
   const [cartCounter, setCartCounter] = useState(0)
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
   const [isCheckSideMenuOpen, setIsCheckSideMenuOpen] = useState(false)
@@ -54,7 +57,11 @@ export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
       isCheckSideMenuOpen,
       removeProductFromCart,
       order,
-      addNewOrder
+      addNewOrder,
+      accounts,
+      setAccounts,
+      logged,
+      setLogged
     }}>
       {children}
     </ShopiCartContext.Provider>
