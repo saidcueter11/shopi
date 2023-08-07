@@ -7,6 +7,7 @@ import { SignIn } from '../SignIn'
 import { NotFound } from '../NotFound'
 import { Navbar } from '../../Components/Navbar'
 import { ShopiCartProvider } from '../../Context'
+import { SignUp } from '../SignUp'
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -18,6 +19,7 @@ const AppRoutes = () => {
     { path: '/myOrders/:id', element: <MyOrder/> },
     { path: '/myAccount', element: <MyAccount/> },
     { path: '/SignIn', element: <SignIn/> },
+    { path: '/SignUp', element: <SignUp/> },
     { path: '/*', element: <NotFound/> }
   ])
 

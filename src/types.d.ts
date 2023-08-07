@@ -35,3 +35,9 @@ export interface ShopiCartContextType {
   order: OrderType[]
   addNewOrder: (products: ProductType[], totalProducts: number, totalPrice: number) => void
 }
+
+export interface AccountType {
+  email: string
+  password: string
+  orders: OrderType[]
+}
