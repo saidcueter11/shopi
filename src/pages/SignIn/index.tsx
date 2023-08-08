@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react'
 import { MainLayout } from '../../Components/Layout'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Navigate, useNavigate } from 'react-router-dom'
 import { ShopiCartContextType } from '../../types'
 import { ShopiCartContext } from '../../Context'
 
 export const SignIn = () => {
   const context = useContext(ShopiCartContext) as ShopiCartContextType
+  const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -28,11 +29,17 @@ export const SignIn = () => {
 
       if (account.email === email && account.password === password) {
         context.setLogged(true)
+        navigate('/')
       }
     })
   }
 
-  return (
+  if (context.logged) {
+    return <Navigate to={'/'} replace={true}/>
+  }
+
+  if (!context.logged) {
+    return (
     <MainLayout>
       <form action="" className='w-80 flex flex-col justify-center items-center gap-5'>
         <div className='flex flex-col gap-2 justify-between'>
@@ -54,5 +61,6 @@ export const SignIn = () => {
       <NavLink to={'/SignUp'} className='p-4 px-8 border border-black/80 mt-4 rounded-lg font-medium hover:bg-slate-900 hover:text-slate-50 transition-colors'>Sign Up</NavLink>
 
     </MainLayout>
-  )
+    )
+  }
 }
