@@ -7,6 +7,7 @@ export const ShopiCartContext = createContext<ShopiCartContextType | null>(null)
 export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
   const [accounts, setAccounts] = useLocalStorage<AccountType[]>('accounts', [])
   const [logged, setLogged] = useLocalStorage<boolean>('logged', false)
+  const [currentUser, setCurrentUser] = useState<AccountType>()
   const [cartCounter, setCartCounter] = useState(0)
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
   const [isCheckSideMenuOpen, setIsCheckSideMenuOpen] = useState(false)
@@ -61,7 +62,9 @@ export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
       accounts,
       setAccounts,
       logged,
-      setLogged
+      setLogged,
+      currentUser,
+      setCurrentUser
     }}>
       {children}
     </ShopiCartContext.Provider>

@@ -44,4 +44,6 @@ export interface ShopiCartContextType {
   setAccounts: (newItem: AccountType[]) => void
   logged: boolean
   setLogged: (newItem: boolean) => void
+  currentUser?: AccountType
+  setCurrentUser: (acc: AccountType) => void
 }

@@ -35,7 +35,7 @@ export const Navbar = () => {
         {
           context.logged &&
             <>
-              <li className='text-black/60'>email@domain.com</li>
+              <li className='text-black/60'>{context.currentUser?.email}</li>
               <li><NavLink className={({ isActive }) => isRouteActive(isActive)} to={'/myOrders'}>My Orders</NavLink></li>
               <li><NavLink className={({ isActive }) => isRouteActive(isActive)} to={'/myAccount'}>My Account</NavLink></li>
               <li><NavLink onClick={handleSignOut} className={({ isActive }) => isRouteActive(isActive)} to={'/SignIn'}>Sign out</NavLink></li>

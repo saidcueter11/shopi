@@ -29,6 +29,7 @@ export const SignIn = () => {
 
       if (account.email === email && account.password === password) {
         context.setLogged(true)
+        context.setCurrentUser(account)
         navigate('/')
       }
     })
