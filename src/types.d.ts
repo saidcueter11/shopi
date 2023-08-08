@@ -21,10 +21,10 @@ export interface OrderType {
 }
 
 export interface AccountType {
-  name: string
-  email: string
-  password: string
-  orders: OrderType[]
+  name?: string
+  email?: string
+  password?: string
+  orders?: OrderType[]
 }
 export interface ShopiCartContextType {
   cartCounter: number
