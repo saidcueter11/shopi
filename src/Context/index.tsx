@@ -8,13 +8,11 @@ export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
   const [accounts, setAccounts] = useLocalStorage<AccountType[]>('accounts', [])
   const [logged, setLogged] = useLocalStorage<boolean>('logged', false)
   const [currentUser, setCurrentUser] = useLocalStorage<AccountType>('currentUser', {})
-  // const [currentUser, setCurrentUser] = useState<AccountType>()
   const [cartCounter, setCartCounter] = useState(0)
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
   const [isCheckSideMenuOpen, setIsCheckSideMenuOpen] = useState(false)
   const [productToShow, setProductToShow] = useState<ProductType>({})
   const [shopingCart, setShopingCart] = useState<ProductType[]>([])
-  const [order, setOrder] = useState<OrderType[]>([])
 
   const addProductToCart = (product: ProductType) => {
     setIsCheckSideMenuOpen(true)
@@ -37,23 +35,26 @@ export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
 
   const addNewOrder = (products: ProductType[], totalPrice: number, totalProducts: number) => {
     const newOrder: OrderType = { date: Date.now(), products, totalPrice, totalProducts }
-    currentUser.orders?.push(newOrder)
-    setCurrentUser(currentUser)
     const updatedAccounts = accounts.map(acc => {
       if (acc.email === currentUser?.email) acc.orders?.push(newOrder)
       return acc
     })
+
+    currentUser.orders?.push(newOrder)
+    setCurrentUser(currentUser)
+
     setAccounts(updatedAccounts)
-    setOrder(prev => [...prev, newOrder])
     setCartCounter(0)
     setShopingCart([])
   }
 
   const closeProductDetail = () => setIsProductDetailOpen(false)
   const closeCheckoutSideMenu = () => setIsCheckSideMenuOpen(false)
+  const openCheckoutSideMenu = () => setIsCheckSideMenuOpen(true)
 
   return (
     <ShopiCartContext.Provider value={{
+      openCheckoutSideMenu,
       cartCounter,
       setCartCounter,
       isProductDetailOpen,
@@ -65,7 +66,6 @@ export const ShopiCartProvider = ({ children }: {children:React.ReactNode}) => {
       closeCheckoutSideMenu,
       isCheckSideMenuOpen,
       removeProductFromCart,
-      order,
       addNewOrder,
       accounts,
       setAccounts,

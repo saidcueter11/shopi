@@ -37,8 +37,8 @@ export interface ShopiCartContextType {
   addProductToCart: (product: ProductType) => void
   removeProductFromCart: (product: ProductType) => void
   closeCheckoutSideMenu: () => void
+  openCheckoutSideMenu: () => void
   isCheckSideMenuOpen: boolean
-  order: OrderType[]
   addNewOrder: (products: ProductType[], totalProducts: number, totalPrice: number) => void
   accounts: AccountType[]
   setAccounts: (newItem: AccountType[]) => void

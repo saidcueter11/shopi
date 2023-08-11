@@ -1,8 +1,9 @@
 import { useContext } from 'react'
 import { MainLayout } from '../../Components/Layout'
 import { ShopiCartContext } from '../../Context'
-import { OrderCard } from '../../Components/OrderCard'
 import { Link, useLocation } from 'react-router-dom'
+import { OrderDetail } from '../../Components/OrderDetail'
+import { OrderType } from '../../types'
 
 export const MyOrder = () => {
   const context = useContext(ShopiCartContext)
@@ -23,12 +24,13 @@ export const MyOrder = () => {
       </section>
       <div className='flex flex-col w-80'>
         {
-          id !== 'last' && currentOrder?.products.map(product => <OrderCard key={product.id} {...product}/>)
+          id !== 'last' && <OrderDetail order={currentOrder as OrderType}/>
         }
 
         {
-          id === 'last' && lastOrder?.products.map(product => <OrderCard key={product.id} {...product}/>)
+          id === 'last' && <OrderDetail order={lastOrder as OrderType}/>
         }
+
       </div>
     </MainLayout>
   )
