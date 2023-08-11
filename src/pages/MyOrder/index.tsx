@@ -8,8 +8,8 @@ export const MyOrder = () => {
   const context = useContext(ShopiCartContext)
   const { pathname } = useLocation()
   const id = pathname.slice(10).split('%')[0]
-  const currentOrder = context?.order?.find(o => o.date.toString() === id)
-  const lastOrder = context?.order?.slice(-1)[0]
+  const currentOrder = context?.currentUser?.orders?.find(o => o.date.toString() === id)
+  const lastOrder = context?.currentUser?.orders?.slice(-1)[0]
 
   return (
     <MainLayout>

@@ -8,8 +8,12 @@ export const MyOrders = () => {
   const context = useContext(ShopiCartContext)
   return (
     <MainLayout>
+      <h1 className='font-medium text-xl'>My Orders</h1>
       {
-        context?.order.map(o => <Link key={o.date} to={`/myOrders/${o.date}}`}><OrdersCard date={o.date} totalPrice={o.totalPrice} totalProducts={o.totalProducts}/></Link>)
+        context?.currentUser?.orders?.map(o =>
+          <Link key={o.date} to={`/myOrders/${o.date}}`}>
+            <OrdersCard date={o.date} totalPrice={o.totalPrice} totalProducts={o.totalProducts}/>
+          </Link>)
       }
     </MainLayout>
   )
