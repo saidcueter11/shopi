@@ -8,6 +8,7 @@ import { NotFound } from '../NotFound'
 import { Navbar } from '../../Components/Navbar'
 import { ShopiCartProvider } from '../../Context'
 import { SignUp } from '../SignUp'
+import { NavBarMobile } from '../../Components/NavBarMobile'
 
 const AppRoutes = () => {
   const routes = useRoutes([
@@ -31,6 +32,7 @@ function App () {
     <ShopiCartProvider>
       <BrowserRouter>
         <AppRoutes/>
+        <NavBarMobile/>
         <Navbar/>
       </BrowserRouter>
     </ShopiCartProvider>
