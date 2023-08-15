@@ -6,6 +6,7 @@ import { ProductDetail } from '../../Components/ProductDetail'
 import { CheckoutSideMenu } from '../../Components/CheckoutSideMenu'
 import { useParams } from 'react-router-dom'
 import { LoadingItems } from '../../Components/LoadingItems'
+import { SearchBar } from '../../Components/SearchBar'
 
 export const Home = () => {
   const [items, setItems] = useState<ProductType[]>([])
@@ -26,10 +27,7 @@ export const Home = () => {
 
   return (
     <MainLayout>
-      <header className='flex items-center justify-center relative w-80 mb-4 flex-col gap-3'>
-        <h1 className='font-medium text-xl'>Exclusive Products</h1>
-        <input type="text" placeholder='Search a product...' className='rounded-lg border border-black/90 w-80 p-4 mb-4' onChange={handleChange}/>
-      </header>
+      <SearchBar handleChange={handleChange}/>
       <section className='grid grid-cols-1 w-full max-w-screen-lg justify-items-center sm:grid-cols-2 md:grid-cols-3'>
         {
           filteredItems.map(item => <ProductCard key={item.id} {...item}/>)

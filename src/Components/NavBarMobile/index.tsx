@@ -5,8 +5,8 @@ export const NavBarMobile = () => {
   const handleClick = () => setIsOpen(prev => !prev)
 
   return (
-    <main className="relative w-full h-screen">
-      <div className={`bg-white/90 h-full w-2/3 fixed z-20 top-0 right-0 ${!isOpen ? 'translate-x-full' : 'translate-x-0'} transition-transform`}>
+    <main className="relative w-full h-screen lg:hidden">
+      <div className={`bg-white/90 h-full max-w-xs w-2/4 fixed z-20 top-0 right-0 ${!isOpen ? 'translate-x-full' : 'translate-x-0'} transition-transform`}>
         <p onClick={handleClick}>x</p>
       </div>
 
