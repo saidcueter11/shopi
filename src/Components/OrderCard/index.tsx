@@ -11,7 +11,7 @@ export const OrderCard = (item: ProductType) => {
         <figure className="w-20 h-20">
           <img className="w-full h-full rounded-lg object-contain" src={item.image} alt="" />
         </figure>
-        <h3 className="text-sm font-light truncate w-20">{item.title}</h3>
+        <h3 className="text-sm font-light truncate w-16">{item.title}</h3>
       </div>
 
       <div className="flex items-center gap-2">

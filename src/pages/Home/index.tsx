@@ -28,7 +28,7 @@ export const Home = () => {
   return (
     <MainLayout>
       <SearchBar handleChange={handleChange}/>
-      <section className='grid grid-cols-1 w-full max-w-screen-lg justify-items-center sm:grid-cols-2 md:grid-cols-3'>
+      <section className='grid grid-cols-1 w-full max-w-screen-lg justify-items-center sm:grid-cols-2 md:grid-cols-3 gap-5'>
         {
           filteredItems.map(item => <ProductCard key={item.id} {...item}/>)
         }
