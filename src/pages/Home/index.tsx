@@ -22,8 +22,8 @@ export const Home = () => {
   const handleChange = (e: SyntheticEvent<HTMLInputElement>) => setSearchByTitle(e.currentTarget.value)
 
   const filteredItems = category
-    ? items.filter(item => item.category?.includes(category as string) && item.title?.toLocaleLowerCase()?.startsWith(searchByTitle))
-    : items.filter(item => item.title?.toLocaleLowerCase()?.startsWith(searchByTitle))
+    ? items.filter(item => item.category?.includes(category as string) && item.title?.toLocaleLowerCase()?.startsWith(searchByTitle.toLocaleLowerCase()))
+    : items.filter(item => item.title?.toLocaleLowerCase()?.startsWith(searchByTitle.toLocaleLowerCase()))
 
   return (
     <MainLayout>
