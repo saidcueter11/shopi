@@ -1,5 +1,6 @@
 import { SyntheticEvent, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { LoadingCategoriesMobile } from '../LoadingCategoriesMobile'
 
 export const SearchBar = ({ handleChange }: {handleChange: (e:SyntheticEvent<HTMLInputElement>) => void}) => {
   const [categories, setCategories] = useState([])
@@ -19,12 +20,17 @@ export const SearchBar = ({ handleChange }: {handleChange: (e:SyntheticEvent<HTM
         <h1 className='font-medium text-xl'>Exclusive Products</h1>
         <input type="text" placeholder='Search a product...' className='rounded-lg border border-black/90 w-80 p-4 lg:mb-4' onChange={handleChange}/>
 
-        <ul className='flex overflow-x-scroll w-screen px-4 py-3 gap-2 md:justify-center lg:hidden'>
-          <li className=''><NavLink className={({ isActive }) => isRouteActive(isActive)} to={'/'}>All</NavLink></li>
-          {
-            categories.map((category, i) => <li className='min-w-fit' key={i}><NavLink className={({ isActive }) => isRouteActive(isActive)} to={`/${category}`}>{category}</NavLink></li>)
-          }
-        </ul>
+        {
+          categories.length > 0
+            ? <ul className='flex overflow-x-scroll w-screen px-4 py-3 gap-2 md:justify-center lg:hidden'>
+                <li className=''><NavLink className={({ isActive }) => isRouteActive(isActive)} to={'/'}>All</NavLink></li>
+                {
+                  categories.map((category, i) => <li className='min-w-fit' key={i}><NavLink className={({ isActive }) => isRouteActive(isActive)} to={`/${category}`}>{category}</NavLink></li>)
+                }
+              </ul>
+            : <LoadingCategoriesMobile/>
+        }
+
       </header>
 
     </>
