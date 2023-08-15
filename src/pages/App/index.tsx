@@ -9,16 +9,17 @@ import { Navbar } from '../../Components/Navbar'
 import { ShopiCartProvider } from '../../Context'
 import { SignUp } from '../SignUp'
 import { NavBarMobile } from '../../Components/NavBarMobile'
+import { PrivateRoute } from '../../Components/PrivateRoute'
 
 const AppRoutes = () => {
   const routes = useRoutes([
-    { path: '/', element: <Home/> },
-    { path: '/:category', element: <Home/> },
-    { path: '/myOrder', element: <MyOrder/> },
-    { path: '/myOrders', element: <MyOrders/> },
-    { path: '/myOrders/last', element: <MyOrder/> },
-    { path: '/myOrders/:id', element: <MyOrder/> },
-    { path: '/myAccount', element: <MyAccount/> },
+    { path: '/', element: <PrivateRoute><Home/></PrivateRoute> },
+    { path: '/:category', element: <PrivateRoute><Home/></PrivateRoute> },
+    { path: '/myOrder', element: <PrivateRoute><MyOrder/></PrivateRoute> },
+    { path: '/myOrders', element: <PrivateRoute><MyOrders/></PrivateRoute> },
+    { path: '/myOrders/last', element: <PrivateRoute><MyOrder/></PrivateRoute> },
+    { path: '/myOrders/:id', element: <PrivateRoute><MyOrder/></PrivateRoute> },
+    { path: '/myAccount', element: <PrivateRoute><MyAccount/></PrivateRoute> },
     { path: '/SignIn', element: <SignIn/> },
     { path: '/SignUp', element: <SignUp/> },
     { path: '/*', element: <NotFound/> }
